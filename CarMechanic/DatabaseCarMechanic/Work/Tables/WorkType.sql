@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Work.WorkType
 (
-	WorkTypeID INT NOT NULL,
+	WorkTypeID INT NOT NULL IDENTITY (1,1),
 	WorkTypeName VARCHAR(30) NOT NULl,
 	CONSTRAINT PK_WorkType_WorkTypeID PRIMARY KEY (WorkTypeID)
 )

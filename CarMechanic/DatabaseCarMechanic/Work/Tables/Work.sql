@@ -9,9 +9,7 @@
 	CarID INT NOT NULL,
 	OwnerID INT NOT NULL,
 	MechanicID INT NOT NULL,
-	LabourCost NUMERIC(6,2) NOT NULL,
-	PartCost NUMERIC(6,2) NOT NULL,
-	TotalCost AS LabourCost + PartCost  
+	LabourCost NUMERIC(6,2) NOT NULL
     CONSTRAINT PK_Work_WorkID PRIMARY KEY (WorkID),
 	CONSTRAINT FK_Work_OwnerID FOREIGN KEY (OwnerID) REFERENCES Person.Person (PersonID),
 	CONSTRAINT FK_Work_MechanicID FOREIGN KEY (MechanicID) REFERENCES Person.Person (PersonID),

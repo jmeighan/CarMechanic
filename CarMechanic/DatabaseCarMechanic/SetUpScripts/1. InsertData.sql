@@ -193,15 +193,123 @@ INSERT INTO Car.Car([ModelID],[RegistrationNumber],[MOTExpirey],[VinNumber],[Cur
 
 SELECT * FROM Car.Car
 
+
+--delete  Car.Car
+
+--DBCC CHECKIDENT ('Car.Car', RESEED, 0)
+
+
+
+select * from person.AddressType
+
+INSERT INTO person.AddressType 
+VALUES ('Home'),('Work'),('Billing'),('Shipping'),('Mailing'),('Business'),('Dormitory'),('Campus'),('Other')
+
+SELECT * from Person.PersonAddress
+
+INSERT INTO  Person.PersonAddress VALUES
+(1,1,1), (2,1,2), (3,1,3), 
+(4,2,1), (14,2,5), (5,2,2), 
+(6,3,1), (7,3,5), (8,3,2), 
+(9,4,1), (10,5,5), (11,5,2), 
+(15,6,1), (17,7,5), (21,8,2), 
+(23,9,1), (25,10,5), (33,11,2), 
+(35,12,1), (36,12,5), (40,13,2)
+
+
+SELECT * FROM Person.PersonAddress
+
+
+
 --delete Car.Car
 
 --DBCC CHECKIDENT ('Car.Car', RESEED, 0)
 
 
 
+INSERT INTO work.WorkType VALUES
+('MOT'),('Service - Small'),('Service - Full'),('Repairs'),('Other')
+SELECT * FROM Work.WorkType
+
+
+INSERT INTO Work.Work VALUES
+(1,'MOT','Anual MOT Check', '2015-03-04 11:00:00','2015-03-04 11:40:00',1, 4,1,35.00),
+(1,'MOT','Anual MOT Check', '2015-03-04 11:45:00','2015-03-04 12:30:00',2, 5,1,35.00)
+
+SELECT * FROM Work.Work
+
+
+--delete Work.Work
+
+--DBCC CHECKIDENT ('Work.Work', RESEED, 0)
 
 
 
+SELECT * FROM Work.Part
+
+INSERT INTO Work.Part
+VALUES('20XD Spark Plugs'),('Exhaust DD120'),('HandBreak FX400'),('Air Filter 444'),('Wing Mirror - Corsa 2001'),('Rear HeadLight')
+
+SELECT * FROM Work.Part
 
 
+
+INSERT INTO work.Supplier
+VALUES ('MD Autos'),('Fowlers Motor Shop'),('Mikes Motor Mart'),('Motor World'),('Car Parts R us')
+
+SELECT * FROM Work.Supplier
+
+
+SELECT * FROM work.PartSupplier
+
+INSERT INTO  work.PartSupplier
+VALUES (1,1,35.00),(1,2,37.00),(1,3,39.00),(1,4,28.00),(1,5,45.00),
+(2,1,98.00),(2,2,101.00),(2,3,88.00),(2,4,128.00),(2,5,94.00),
+(3,1,22.00),(3,2,33.00),(3,3,44.00),(4,4,66.00),(5,5,88.00),
+(4,1,22.00),(4,2,12.00),
+(5,3,22.00),(5,4,8.00)
+
+SELECT * FROM work.PartSupplier
+
+SELECT * FROM work.WorkPart
+
+INSERT INTO Work.WorkPart VALUES
+(2,1),(2,6)
+
+--DELETE work.WorkPart
+
+--DBCC CHECKIDENT ('work.WorkPart', RESEED, 0)
+
+select * from work.workpart
+
+select * from work.Part
+
+SELECT * FROM work.PartSupplier
+
+SELECT Man.ManufacturerName, 
+M.ModelName, 
+C.CurrentMilage,
+C.RegistrationNumber,
+W.BookedInDate,
+W.FinishedDate,
+DATEDIFF(MI, W.BookedInDate, W.FinishedDate) as MinutesDuration,
+P.PartName,
+W.LabourCost,
+PS.Cost as PartCost
+FROM work.work W
+INNER JOIN work.WorkPart WP
+ON W.WorkID = WP.WorkID
+INNER JOIN Car.Car C
+on C.CarID = W.CarID
+INNER JOIN Car.Model M
+ON M.ModelID = C.ModelID
+INNER JOIN Car.Manufacturer Man
+ON Man.ManufacturerID = M.ManufacturerID
+INNER JOIN work.PartSupplier PS
+ON PS.PartSupplierID = WP.PartSupplierID
+INNER JOIN Work.Supplier S
+ON S.SupplierID = PS.SupplierID
+INNER JOIN work.Part P
+ON P.PartID = PS.PartID
+where w.WorkID = 2
 
