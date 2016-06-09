@@ -1,0 +1,7 @@
+﻿CREATE TABLE Work.WorkPart
+(
+	WorkPartID INT NOT NULL IDENTITY(1,1),
+	WorkID INT NOT NULL,
+	PartSupplierID INT NOT NULL,
+	CONSTRAINT PK_WorkPart_WorkPartID PRIMARY KEY (WorkPartID)
+)

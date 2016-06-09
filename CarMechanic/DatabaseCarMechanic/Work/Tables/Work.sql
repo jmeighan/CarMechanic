@@ -1,0 +1,20 @@
+﻿CREATE TABLE Work.Work
+(
+	WorkID INT NOT NULL IDENTITY (1,1),
+	WorkTypeID INT NOT NULL,
+	JobTitle VARCHAR(20) NOT NULL,
+	JobDescription VARCHAR(200)NOT NULL,
+	BookedInDate DATETIME2 NOT NULL,
+	FinishedDate DATETIME2 NULL,
+	CarID INT NOT NULL,
+	OwnerID INT NOT NULL,
+	MechanicID INT NOT NULL,
+	LabourCost NUMERIC(6,2) NOT NULL,
+	PartCost NUMERIC(6,2) NOT NULL,
+	TotalCost AS LabourCost + PartCost  
+    CONSTRAINT PK_Work_WorkID PRIMARY KEY (WorkID),
+	CONSTRAINT FK_Work_OwnerID FOREIGN KEY (OwnerID) REFERENCES Person.Person (PersonID),
+	CONSTRAINT FK_Work_MechanicID FOREIGN KEY (MechanicID) REFERENCES Person.Person (PersonID),
+	CONSTRAINT FK_Work_CarID FOREIGN KEY (CarID) REFERENCES Car.Car (CarID),
+	CONSTRAINT FK_Work_WorkTypeID FOREIGN KEY (WorkTypeID) REFERENCES Work.WorkType (WorkTypeID)
+)

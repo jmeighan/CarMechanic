@@ -1,0 +1,6 @@
+﻿CREATE TABLE Work.Part
+(
+	PartID INT NOT NULL,
+	PartName VARCHAR(30)
+	CONSTRAINT PK_Part_PartID PRIMARY KEY (PartID)
+)

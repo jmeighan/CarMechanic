@@ -1,0 +1,6 @@
+﻿CREATE TABLE Car.Colour
+(
+	ColourID INT NOT NULL IDENTITY (1,1),
+	ColourName VARCHAR(20)
+	CONSTRAINT PK_Colour_ColourID PRIMARY KEY (ColourID)
+)
